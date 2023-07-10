@@ -1,30 +1,33 @@
 version: '3'
 
 volumes:
-  pg_data_production:
-  static_volume:
+  pg_data:
+  static:
+  media:
 
 services:
   db:
     image: postgres:13.10
     env_file: .env
     volumes:
-      - pg_data_production:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgresql/data
   backend:
     image: anasti97/kittygram_backend
     env_file: .env
     volumes:
-      - static_volume:/static
+      - static:/backend_static
+      - media:/app/madia
   frontend:
     image: anasti97/kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static_volume:/static
+      - static:/static
   gateway:
     image: anasti97/kittygram_gateway
     env_file: .env
     volumes:
-      - static_volume:/static
+      - static:/staticfiles
+      - media:/madia
     ports:
       - 9000:80
