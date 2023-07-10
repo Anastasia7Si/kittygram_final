@@ -15,19 +15,19 @@ services:
     image: anasti97/kittygram_backend
     env_file: .env
     volumes:
-      - static:/backend_static
+      - static:/static
       - media:/app/madia
   frontend:
     image: anasti97/kittygram_frontend
     env_file: .env
-    command: cp -r /app/build/. /frontend_static/
+    command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
     image: anasti97/kittygram_gateway
     env_file: .env
     volumes:
-      - static:/staticfiles
+      - static:/static
       - media:/madia
     ports:
       - 9000:80
