@@ -15,8 +15,8 @@ services:
     image: anasti97/kittygram_backend
     env_file: .env
     volumes:
-      - static:/backend_static/
-      - media:/app/madia/
+      - static:/static
+      - media:/app/media/
     depends_on:
       - db
   frontend:
@@ -24,15 +24,15 @@ services:
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static:/frontend_static
+      - static:/static
     depends_on:
       - backend
   gateway:
     image: anasti97/kittygram_gateway
     env_file: .env
     volumes:
-      - static:/staticfiles/
-      - media:/madia/
+      - static:/static
+      - media:/app/media/
     ports:
       - 9000:80
     depends_on:
