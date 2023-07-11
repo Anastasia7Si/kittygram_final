@@ -22,7 +22,7 @@ services:
   frontend:
     image: anasti97/kittygram_frontend
     env_file: .env
-    command: cp -r /app/build/. /frontend_static/
+    command: cp -r /app/build/. /static/
     volumes:
       - static:/static
     depends_on:
